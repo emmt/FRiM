@@ -1,3 +1,6 @@
+# location of the sources
+srcdir = .
+
 # these values filled in by yorick -batch make.i
 Y_MAKEDIR=
 Y_EXE=
@@ -14,7 +17,7 @@ TGT=$(DEFAULT_TGT)
 # ------------------------------------------------ macros for this package
 
 PKG_NAME=yor_frim
-PKG_I=frim.i
+PKG_I=$(srcdir)/frim.i
 
 OBJS=error.o frim.o yor_frim.o
 
@@ -24,7 +27,7 @@ PKG_EXENAME=yorick
 # PKG_DEPLIBS=-Lsomedir -lsomelib   for dependencies of this package
 PKG_DEPLIBS=
 # set compiler (or rarely loader) flags specific to this package
-PKG_CFLAGS=
+PKG_CFLAGS= -I$(srcdir)/../c
 PKG_LDFLAGS=
 
 # list of additional package names you want in PKG_EXENAME
@@ -35,7 +38,7 @@ EXTRA_PKGS=$(Y_EXE_PKGS)
 PKG_CLEAN=
 
 # autoload file for this package, if any
-PKG_I_START=frim-start.i
+PKG_I_START=$(srcdir)/frim-start.i
 # non-pkg.i include files for this package, if any
 PKG_I_EXTRA=
 
@@ -68,7 +71,11 @@ MAKE_TEMPLATE = protect-against-1.5
 #myfunc.o: myapi.h myfunc.c
 #	$(CC) $(CPPFLAGS) $(CFLAGS) -DMY_SWITCH -o $@ -c myfunc.c
 
-error.o: frim.h
-frim.o: frim.h
+error.o: $(srcdir)/../c/error.c $(srcdir)/../c/frim.h
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o "$@" -c "$<"
+frim.o: $(srcdir)/../c/frim.c $(srcdir)/../c/frim.h
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o "$@" -c "$<"
+yor_frim.o: $(srcdir)/yor_frim.c $(srcdir)/../c/frim.h
+	$(CC) $(CPPFLAGS) $(CFLAGS) -o "$@" -c "$<"
 
 # -------------------------------------------------------- end of Makefile

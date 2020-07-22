@@ -17,7 +17,7 @@ if (is_func(plug_in)) plug_in, "yor_frim";
 /*---------------------------------------------------------------------------*/
 
 if (! is_func(random_n)) {
-  include, "random.i";
+    include, "random.i";
 }
 
 func kolmogorov_lane(p, r0=, six=)
@@ -56,7 +56,7 @@ func frim_lane(sf, six=)
             = sqrt(2.0)^indgen(0:2*p+1)
 
      If keyword SIX is true, original method is used which requires 6
-     random values to generate the 4 values at the outermost 4 corner of
+     random values to generate the 4 values at the outermost 4 corners of
      the result; otherwise, a modified method is used which only requires
      as many random values as the result array.
 
