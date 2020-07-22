@@ -14,12 +14,12 @@
 
 #include "frim.h"
 
-const char *frim_error_message(const int status)
+char const*frim_error_message(int const status)
 {
-  switch (status) {
-#define _FRIM_ERROR(ident, message) \
-  case FRIM_JOIN(FRIM_ERROR_, ident): return message;
+    switch (status) {
+#define _FRIM_ERROR(ident, mesg) case FRIM_PASTE(FRIM_ERROR_, ident): return mesg;
+    _FRIM_ERROR_TABLE
 #undef _FRIM_ERROR
-  default: return "unknown error status";
-  }
+    default: return "unknown error status";
+    }
 }

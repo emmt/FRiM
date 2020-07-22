@@ -23,33 +23,33 @@
 #include "frim.h"
 
 #define RETURN_FAILURE(CODE) \
-		if (status) *status = FRIM_JOIN(FRIM_ERROR_, CODE); \
+		if (status) *status = FRIM_PASTE(FRIM_ERROR_, CODE); \
 		return FRIM_FAILURE
 #define RETURN_SUCCESS \
 		if (status) *status = FRIM_ERROR_NONE; \
 		return FRIM_SUCCESS
 
-#define real_t   float
+#define TYPE   float
 #define suffix   _f
 #include __FILE__
 
-#define real_t   double
+#define TYPE   double
 #define suffix   _d
 #include __FILE__
 
 #else /* _FRIM_CODE defined ---------------------------------------------*/
 
-#define WFS_MODEL1   FRIM_JOIN(wfs_model1, suffix)
-#define FRIM_GEN_2D  FRIM_JOIN(frim_gen_2d, suffix)
-#define FRIM_INT_2D  FRIM_JOIN(frim_int_2d, suffix)
-#define FRIM_LANE    FRIM_JOIN(frim_lane, suffix)
+#define WFS_MODEL1   FRIM_PASTE(wfs_model1, suffix)
+#define FRIM_GEN_2D  FRIM_PASTE(frim_gen_2d, suffix)
+#define FRIM_INT_2D  FRIM_PASTE(frim_int_2d, suffix)
+#define FRIM_LANE    FRIM_PASTE(frim_lane, suffix)
 
 #ifdef WFS_MODEL1
-int WFS_MODEL1(real_t dst[], const real_t src[], const size_t dim,
-	       unsigned int flags, int *status)
+int WFS_MODEL1(TYPE*restrict dst, TYPE const*restrict src,
+               size_t const dim, unsigned int flags, int* status)
 {
-  const real_t O_5 = 0.5;
-  real_t wx, wy;
+  const TYPE p5 = 0.5;
+  TYPE wx, wy;
   size_t x, y, n;
 
   if (dim < 1) {
@@ -65,8 +65,8 @@ int WFS_MODEL1(real_t dst[], const real_t src[], const size_t dim,
     }
     for (y=0 ; y<n ; ++y) {
       for (x=0 ; x<n ; ++x) {
-	wx = SRC(0,x,y)*O_5;
-	wy = SRC(1,x,y)*O_5;
+	wx = SRC(0,x,y)*p5;
+	wy = SRC(1,x,y)*p5;
 	DST( x , y ) -= wx + wy;
 	DST(x+1, y ) += wx - wy;
 	DST( x ,y+1) -= wx - wy;
@@ -81,8 +81,8 @@ int WFS_MODEL1(real_t dst[], const real_t src[], const size_t dim,
 #define DST(s,i1,i2) dst[((i2)*n + (i1))*2 + (s)]
     for (y=0 ; y<n ; ++y) {
       for (x=0 ; x<n ; ++x) {
-	DST(0,x,y) = (SRC(x+1,y+1) + SRC(x+1,y) - SRC(x,y+1) - SRC(x,y))*O_5;
-	DST(1,x,y) = (SRC(x+1,y+1) - SRC(x+1,y) + SRC(x,y+1) - SRC(x,y))*O_5;
+	DST(0,x,y) = (SRC(x+1,y+1) + SRC(x+1,y) - SRC(x,y+1) - SRC(x,y))*p5;
+	DST(1,x,y) = (SRC(x+1,y+1) - SRC(x+1,y) + SRC(x,y+1) - SRC(x,y))*p5;
       }
     }
 #undef SRC
@@ -133,12 +133,13 @@ int WFS_MODEL1(real_t dst[], const real_t src[], const size_t dim,
  */
 
 #ifdef FRIM_GEN_2D
-int FRIM_GEN_2D(real_t dst[], const real_t src[], const size_t dim,
-		const real_t c[], const size_t nc, int job, int *status)
+int FRIM_GEN_2D(TYPE*restrict dst, TYPE const*restrict src,
+                size_t const dim, TYPE const*restrict c,
+                size_t const nc, int job, int* status)
 {
-  real_t c0, c1, c2, c3;
-  real_t w1, w2, w3, w4, w5, q;
-  real_t p1, p2, p3, p4;
+  TYPE c0, c1, c2, c3;
+  TYPE w1, w2, w3, w4, w5, q;
+  TYPE p1, p2, p3, p4;
   size_t n, p, k, x, y, s, h;
 
   /* Check the arguments. */
@@ -579,12 +580,12 @@ int FRIM_GEN_2D(real_t dst[], const real_t src[], const size_t dim,
 #endif /* FRIM_GEN_2D */
 
 #ifdef FRIM_INT_2D
-int FRIM_INT_2D(real_t dst[], const real_t src[], const size_t dim, int job,
-		int *status)
+int FRIM_INT_2D(TYPE*restrict dst, TYPE const*restrict src,
+                size_t const dim, int job, int* status)
 {
-  const real_t p25 = 1.0/4.0;
-  const real_t p33 = 1.0/3.0;
-  real_t q;
+  const TYPE p25 = 1.0/4.0;
+  const TYPE p33 = 1.0/3.0;
+  TYPE q;
   size_t n, p, x, y, s, h;
 
   /* Check the arguments. */
@@ -871,14 +872,14 @@ int FRIM_INT_2D(real_t dst[], const real_t src[], const size_t dim, int job,
  */
 
 #ifdef FRIM_LANE
-int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
-	      const real_t d[], size_t nd, unsigned int flags,
-	      int *status)
+int FRIM_LANE(TYPE*restrict dst, TYPE const*restrict src,
+              size_t const dim, TYPE const*restrict d, size_t nd,
+              unsigned int flags, int *status)
 {
-  const real_t O_5  = 0.5;
-  const real_t O_25 = 0.25;
+  const TYPE p5  = 0.5;
+  const TYPE p25 = 0.25;
 
-  real_t d1, d2, d3, w1, w2, w3, p1, p2, p3, p4;
+  TYPE d1, d2, d3, w1, w2, w3, p1, p2, p3, p4;
   size_t x, y, n, s, h, k, p;
 
 #define SRC(i1,i2) src[(i2)*dim + (i1)]
@@ -915,7 +916,7 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
     DST(0,n) = SRC(0,n)*w2 - p2;
   } else {
     /* Only use 4 random values. */
-    real_t var = d1/2.0; /* variance such that corners on the same side
+    TYPE var = d1/2.0; /* variance such that corners on the same side
 			    are uncorrelated */
     w1 = sqrt(var - d1/4.0 - d2/8.0);
     w2 = sqrt(d1/4.0 - d2/8.0);
@@ -944,7 +945,7 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
       for (x=h; x<n; x+=s) {
 	DST(x,y) = SRC(x,y)*w1
 	  + (DST(x-h, y-h) + DST(x-h, y+h) +
-	     DST(x+h, y-h) + DST(x+h, y+h))*O_25;
+	     DST(x+h, y-h) + DST(x+h, y+h))*p25;
       }
     }
 
@@ -959,24 +960,24 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
     for (y=h; y < n; y+=s) {
       for (x=s; x<n; x+=s) {
 	DST(x,y) = SRC(x,y)*w1
-	  +(DST(x,y-h) + DST(x,y+h) + DST(x-h,y) + DST(x+h,y))*O_25;
+	  +(DST(x,y-h) + DST(x,y+h) + DST(x-h,y) + DST(x+h,y))*p25;
       }
     }
     for (y=s; y < n; y+=s) {
       for (x=h; x<n; x+=s) {
 	DST(x,y) = SRC(x,y)*w1
-	  + (DST(x,y-h) +DST(x,y+h) + DST(x-h,y) +DST(x+h,y))*O_25;
+	  + (DST(x,y-h) +DST(x,y+h) + DST(x-h,y) +DST(x+h,y))*p25;
       }
     }
 
     /* Borders. */
     for (y=h; y < n; y+=s) {
-      DST(0,y) = SRC(0,y)*w2 + (DST(0,y-h) + DST(0,y+h))*O_5;
-      DST(n,y) = SRC(n,y)*w2 + (DST(n,y-h) + DST(n,y+h))*O_5;
+      DST(0,y) = SRC(0,y)*w2 + (DST(0,y-h) + DST(0,y+h))*p5;
+      DST(n,y) = SRC(n,y)*w2 + (DST(n,y-h) + DST(n,y+h))*p5;
     }
     for (x=h; x<n; x+=s) {
-      DST(x,0) = SRC(x,0)*w2 + (DST(x-h,0) + DST(x+h,0))*O_5;
-      DST(x,n) = SRC(x,n)*w2 + (DST(x-h,n) + DST(x+h,n))*O_5;
+      DST(x,0) = SRC(x,0)*w2 + (DST(x-h,0) + DST(x+h,0))*p5;
+      DST(x,n) = SRC(x,n)*w2 + (DST(x-h,n) + DST(x+h,n))*p5;
     }
   }
   RETURN_SUCCESS;
@@ -987,7 +988,7 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
 
 
 #undef suffix
-#undef real_t
+#undef TYPE
 #undef FRIM_INT_2D
 #undef FRIM_GEN_2D
 #undef FRIM_LANE
