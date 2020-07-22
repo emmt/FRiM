@@ -669,51 +669,51 @@ int FRIM_INT_2D(TYPE*restrict dst, TYPE const*restrict src,
 
             /* centers of lozenges and borders */
             for (size_t x = h; x < n; x += s) {
-                q = A(x,0);
-                A(x-h,0) += p33*q;
-                A(x+h,0) += p33*q;
-                A( x ,h) += p33*q;
+                q = A(x,0)*p33;
+                A(x-h,0) += q;
+                A(x+h,0) += q;
+                A( x ,h) += q;
             }
             for (size_t y = h; y < n; y += h) {
-                q = A(0,y);
-                A(0,y-h) += p33*q;
-                A(0,y+h) += p33*q;
-                A(h,y)   += p33*q;
+                q = A(0,y)*p33;
+                A(0,y-h) += q;
+                A(0,y+h) += q;
+                A(h,y)   += q;
                 for (size_t x = s; x < n; x += s) {
-                    q = A(x,y);
-                    A( x ,y-h) += p25*q;
-                    A(x-h, y ) += p25*q;
-                    A(x+h, y ) += p25*q;
-                    A( x ,y+h) += p25*q;
+                    q = A(x,y)*p25;
+                    A( x ,y-h) += q;
+                    A(x-h, y ) += q;
+                    A(x+h, y ) += q;
+                    A( x ,y+h) += q;
                 }
-                q = A(n,y);
-                A( n ,y-h) += p33*q;
-                A( n ,y+h) += p33*q;
-                A(n-h, y ) += p33*q;
+                q = A(n,y)*p33;
+                A( n ,y-h) += q;
+                A( n ,y+h) += q;
+                A(n-h, y ) += q;
                 if ((y += h) >= n) break;
                 for (size_t x = h; x < n; x += s) {
-                    q = A(x,y);
-                    A( x ,y-h) += p25*q;
-                    A(x-h, y ) += p25*q;
-                    A(x+h, y ) += p25*q;
-                    A( x ,y+h) += p25*q;
+                    q = A(x,y)*p25;
+                    A( x ,y-h) += q;
+                    A(x-h, y ) += q;
+                    A(x+h, y ) += q;
+                    A( x ,y+h) += q;
                 }
             }
             for (size_t x = h; x < n; x += s) {
-                q = A(x,n);
-                A( x ,n-h) += p33*q;
-                A(x-h, n ) += p33*q;
-                A(x+h, n ) += p33*q;
+                q = A(x,n)*p33;
+                A( x ,n-h) += q;
+                A(x-h, n ) += q;
+                A(x+h, n ) += q;
             }
 
             /* center of squares */
             for (size_t y = h; y < n; y += s) {
                 for (size_t x = h; x < n; x += s) {
-                    q = A(x,y);
-                    A(x-h,y-h) += p25*q;
-                    A(x+h,y-h) += p25*q;
-                    A(x-h,y+h) += p25*q;
-                    A(x+h,y+h) += p25*q;
+                    q = A(x,y)*p25;
+                    A(x-h,y-h) += q;
+                    A(x+h,y-h) += q;
+                    A(x-h,y+h) += q;
+                    A(x+h,y+h) += q;
                 }
             }
         }
