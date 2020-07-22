@@ -13,10 +13,10 @@ TGT=$(DEFAULT_TGT)
 
 # ------------------------------------------------ macros for this package
 
-PKG_NAME=frim
+PKG_NAME=yor_frim
 PKG_I=frim.i
 
-OBJS=error.o frim.o yor.o
+OBJS=error.o frim.o yor_frim.o
 
 # change to give the executable a name other than yorick
 PKG_EXENAME=yorick

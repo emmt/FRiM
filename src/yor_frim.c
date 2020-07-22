@@ -1,5 +1,5 @@
 /*
- * yor.c -
+ * yor_frim.c -
  *
  * Yorick wrapper for FRiM.
  *
