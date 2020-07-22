@@ -5,7 +5,7 @@
  *
  *-----------------------------------------------------------------------------
  *
- *	Copyright (C) 2005-2006 Eric Thiébaut.
+ *	Copyright (C) 2005-2006 Ã‰ric ThiÃ©baut.
  *
  *	This file is part of FRIM (FRactal Iterative Method).
  *
@@ -88,13 +88,13 @@ int WFS_MODEL1(real_t dst[], const real_t src[], const size_t dim,
 	DST( x , y ) -= wx + wy;
 	DST(x+1, y ) += wx - wy;
 	DST( x ,y+1) -= wx - wy;
-	DST(x+1,y+1) += wx + wy; 
+	DST(x+1,y+1) += wx + wy;
       }
     }
 #undef SRC
 #undef DST
   } else {
-    /* DST is a 2×(DIM-1)×(DIM-1) array */
+    /* DST is a 2Ã—(DIM-1)Ã—(DIM-1) array */
 #define SRC(i1,i2)   src[(i2)*dim + (i1)]
 #define DST(s,i1,i2) dst[((i2)*n + (i1))*2 + (s)]
     for (y=0 ; y<n ; ++y) {
@@ -158,7 +158,7 @@ int FRIM_GEN_2D(real_t dst[], const real_t src[], const size_t dim,
   real_t w1, w2, w3, w4, w5, q;
   real_t p1, p2, p3, p4;
   size_t n, p, k, x, y, s, h;
-  
+
   /* Check the arguments. */
   n = dim - 1;
   for (p = 0 ; 1<<p != n ; ) {
@@ -604,7 +604,7 @@ int FRIM_INT_2D(real_t dst[], const real_t src[], const size_t dim, int job,
   const real_t p33 = 1.0/3.0;
   real_t q;
   size_t n, p, x, y, s, h;
-  
+
   /* Check the arguments. */
   n = dim - 1;
   for (p = 0 ; 1<<p != n ; ) {
@@ -912,7 +912,7 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
   if (nd != 2*p + 2) {
     RETURN_FAILURE(BAD_NCOEFS);
   }
-    
+
   /* Generate the 4 first phases. */
   k = nd;
   d2 = d[--k]; /* structure function at sqrt(2)*(DIM - 1)*STP */
@@ -921,11 +921,11 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
     /* Use 6 random values to generate the 4 first corners. */
     w1 = sqrt(d1 - d2/2.0);   /* standard deviation of corners */
     w2 = sqrt((d2 - d1)/2.0); /* standard deviation of diagonals */
-    
+
     /* Get the tilts. */
     p1 = w1*(*src++);
     p2 = w1*(*src++);
-    
+
     /* Generate the 4 first phases. */
     DST(0,0) = SRC(0,0)*w2 + p1;
     DST(n,n) = SRC(n,n)*w2 - p1;
@@ -956,7 +956,7 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
     d2 = d1;
     d1 = d[--k];
     w1 = sqrt(d1 - d2/4.0 - d3/8.0);
-    
+
     /* centers of squares */
     for (y=h; y<n; y+=s) {
       for (x=h; x<n; x+=s) {
@@ -965,7 +965,7 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
 	     DST(x+h, y-h) + DST(x+h, y+h))*O_25;
       }
     }
-    
+
     /* shift scale */
     d3 = d2;
     d2 = d1;
@@ -986,7 +986,7 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
 	  + (DST(x,y-h) +DST(x,y+h) + DST(x-h,y) +DST(x+h,y))*O_25;
       }
     }
-    
+
     /* Borders. */
     for (y=h; y < n; y+=s) {
       DST(0,y) = SRC(0,y)*w2 + (DST(0,y-h) + DST(0,y+h))*O_5;
@@ -1011,4 +1011,3 @@ int FRIM_LANE(real_t *dst, const real_t *src, const size_t dim,
 #undef FRIM_LANE
 
 #endif /* _FRIM_CODE ----------------------------------------------------*/
-

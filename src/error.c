@@ -5,7 +5,7 @@
  *
  *-----------------------------------------------------------------------------
  *
- *	Copyright (C) 2005-2006 Eric Thi�baut.
+ *	Copyright (C) 2005-2006 Éric Thiébaut.
  *
  *	This file is part of FRIM (FRactal Iterative Method).
  *
@@ -42,4 +42,3 @@ const char *frim_error_message(const int status)
   default: return "unknown error status";
   }
 }
-

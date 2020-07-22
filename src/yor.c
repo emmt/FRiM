@@ -50,8 +50,6 @@ void Y_op_pcg(int argc)
   if (! z || arg_number != number || arg_type != type) {
     goto bad_arg;
   }
-  
-  
 }
 
 static void *get_array(Symbol *s, long *number, int *type)

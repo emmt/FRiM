@@ -5,7 +5,7 @@
  *
  *-----------------------------------------------------------------------------
  *
- *	Copyright (C) 2005-2007 Eric Thiébaut.
+ *	Copyright (C) 2005-2007 Éric Thiébaut.
  *
  *	This file is part of FRIM (FRactal Iterative Method).
  *
