@@ -1,4 +1,4 @@
-# FRactal Iterative Method
+# ![FRiM](gfx/wavefront.png) FRactal Iterative Method
 
 FRiM (FRactal Iterative Method) is an algorithm to generate/recover random
 fields with stationnary covariance like turbulent wavefronts.
