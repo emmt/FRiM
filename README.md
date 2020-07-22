@@ -16,7 +16,7 @@ This repository is organized as follows:
 * [`matlab-octave`](./matlab-octave) contains code to generate turbulent
   wavefronts with [MATLAB](https://en.wikipedia.org/wiki/MATLAB) or
   [Octave](https://www.gnu.org/software/octave/);
-* [`yorick`](./yorick) contains the source of the FRiM plugin for
+* [`yorick`](./yorick) contains the source of the FRiM plug-in for
   [Yorick](http://github.com/dhmunro/yorick).
 
 
@@ -38,4 +38,10 @@ where `$BUILD` is the directory where to build the plug-in and
 [`yorick`](./yorick) directory.  The build directory `$BUILD` should not
 contain precious files you want to keep, the `$BUILD` and `$SRCDIR` can however
 be the same directory.  The `mkdir` command above is only needed if directory
-`$BUILD` does not exist.
+`$BUILD` does not exist.  Call:
+
+```.sh
+$SRCDIR/configure --help
+```
+
+for a short help about possible configuration options.
