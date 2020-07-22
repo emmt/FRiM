@@ -1,32 +1,14 @@
 /*
- * frim.c --
+ * frim.c -
  *
- *	FRIM (FRactal Iterative Method) main code.
+ * FRiM (FRactal Iterative Method) main code.
  *
- *-----------------------------------------------------------------------------
- *
- *	Copyright (C) 2005-2006 Éric Thiébaut.
- *
- *	This file is part of FRIM (FRactal Iterative Method).
- *
- *	FRIM is free software; you can redistribute it and/or modify it
- *	under the terms of the GNU General Public License version 2 as
- *	published by the Free Software Foundation.
- *
- *	FRIM is distributed in the hope that it will be useful, but WITHOUT
- *	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
- *	or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
- *	License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with FRIM (file "COPYING" in the top source directory); if
- *	not, write to the Free Software Foundation, Inc., 51 Franklin St,
- *	Fifth Floor, Boston, MA 02110-1301 USA.
  *
  *-----------------------------------------------------------------------------
  *
- *	$Id$
- *	$Log$
+ * This file is part of FRiM which is licensed under the MIT "Expat" License.
+ *
+ * Copyright (c) 2005-2020: Éric Thiébaut <https://github.com/emmt>
  *
  *-----------------------------------------------------------------------------
  */

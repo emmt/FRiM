@@ -1,3 +1,17 @@
+/*
+ * yor.c -
+ *
+ * Yorick wrapper for FRiM.
+ *
+ *-----------------------------------------------------------------------------
+ *
+ * This file is part of FRiM which is licensed under the MIT "Expat" License.
+ *
+ * Copyright (c) 2005-2020: Éric Thiébaut <https://github.com/emmt>
+ *
+ *-----------------------------------------------------------------------------
+ */
+
 #include <ydata.h>
 #include "frim.h"
 

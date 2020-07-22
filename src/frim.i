@@ -1,37 +1,13 @@
 /*
- * frim.i --
+ * frim.i -
  *
- *	FRIM (FRactal Iterative Method) in Yorick.
- *
- *-----------------------------------------------------------------------------
- *
- *	Copyright (C) 2005-2007 Éric Thiébaut.
- *
- *	This file is part of FRIM (FRactal Iterative Method).
- *
- *	FRIM is free software; you can redistribute it and/or modify it
- *	under the terms of the GNU General Public License version 2 as
- *	published by the Free Software Foundation.
- *
- *	FRIM is distributed in the hope that it will be useful, but
- *	WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *	General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with FRIM (file "COPYING" in the top source directory); if
- *	not, write to the Free Software Foundation, Inc., 51 Franklin St,
- *	Fifth Floor, Boston, MA 02110-1301 USA.
+ * FRiM (FRactal Iterative Method) in Yorick.
  *
  *-----------------------------------------------------------------------------
  *
- *	$Id: frim.i,v 1.2 2007/03/14 16:43:33 eric Exp $
- *	$Log: frim.i,v $
- *	Revision 1.2  2007/03/14 16:43:33  eric
- *	 - Added support for linear operator wrapper (in linop.i).
+ * This file is part of FRiM which is licensed under the MIT "Expat" License.
  *
- *	Revision 1.1  2007/03/14 16:24:28  eric
- *	Initial revision
+ * Copyright (c) 2005-2020: Éric Thiébaut <https://github.com/emmt>
  *
  *-----------------------------------------------------------------------------
  */
