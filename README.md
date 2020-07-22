@@ -1,7 +1,10 @@
-# ![FRiM](gfx/wavefront.png) FRactal Iterative Method
+# FRactal Iterative Method
 
 FRiM (FRactal Iterative Method) is an algorithm to generate/recover random
 fields with stationnary covariance like turbulent wavefronts.
+Below is an example of turbulent wavefront generated with FRiM:
+
+![FRiM](gfx/wavefront.png)
 
 This repository provides the code corresponding to the method described in
 Thiébaut & Tallon, *"Fast minimum variance wavefront reconstruction for
@@ -22,6 +25,7 @@ This repository is organized as follows:
 To build and install the [Yorick](http://github.com/dhmunro/yorick) plug-in:
 
 ```.sh
+mkdir -p $BUILD
 cd $BUILD
 $SRCDIR/configure
 make clean
@@ -31,5 +35,7 @@ make install
 
 where `$BUILD` is the directory where to build the plug-in and
 `$SRCDIR/configure` is the path to the configuration script in the
-[`yorick`](./yorick) directory.  The directories `$BUILD` and `$SRCDIR` can be
-the same.
+[`yorick`](./yorick) directory.  The build directory `$BUILD` should not
+contain precious files you want to keep, the `$BUILD` and `$SRCDIR` can however
+be the same directory.  The `mkdir` command above is only needed if directory
+`$BUILD` does not exist.
