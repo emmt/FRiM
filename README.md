@@ -17,12 +17,12 @@ This repository is organized as follows:
   wavefronts with [MATLAB](https://en.wikipedia.org/wiki/MATLAB) or
   [Octave](https://www.gnu.org/software/octave/);
 * [`yorick`](./yorick) contains the source of the FRiM plug-in for
-  [Yorick](http://github.com/dhmunro/yorick).
+  [Yorick](https://github.com/LLNL/yorick).
 
 
 ## Yorick plug-in
 
-To build and install the [Yorick](http://github.com/dhmunro/yorick) plug-in:
+To build and install the [Yorick](https://github.com/LLNL/yorick) plug-in:
 
 ```.sh
 mkdir -p $BUILD
